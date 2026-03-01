@@ -1000,6 +1000,139 @@ section {
 }
 
 /* ========================================
+   Testimonials Section
+   ======================================== */
+.testimonials {
+    background: var(--bg-primary);
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+    margin-top: 60px;
+}
+
+.testimonial-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 30px;
+    transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+    border-color: var(--accent-primary);
+    transform: translateY(-5px);
+}
+
+.testimonial-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.testimonial-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.testimonial-avatar i {
+    font-size: 24px;
+    color: white;
+}
+
+.testimonial-info {
+    flex: 1;
+}
+
+.testimonial-info h4 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.testimonial-role {
+    display: block;
+    font-size: 14px;
+    color: var(--accent-primary);
+    font-weight: 500;
+}
+
+.testimonial-company {
+    display: block;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.quote-icon {
+    color: var(--accent-primary);
+    font-size: 32px;
+    opacity: 0.3;
+}
+
+.testimonial-content {
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+.testimonial-content p {
+    margin-bottom: 15px;
+}
+
+.testimonial-content p:last-child {
+    margin-bottom: 0;
+}
+
+.testimonial-date {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.testimonial-date i {
+    color: #0077b5;
+    margin-right: 8px;
+}
+
+.testimonial-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 200px;
+    gap: 20px;
+}
+
+.testimonial-placeholder p {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.btn-small {
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ========================================
    Contact Section
    ======================================== */
 .contact {
