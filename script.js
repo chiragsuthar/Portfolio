@@ -141,22 +141,42 @@ document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contactForm');
     
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
             
-            // Simple validation
-            if (name && email && subject && message) {
-                // Here you would typically send the form data to a server
-                // For now, we'll just show a success message
+            // Show loading state
+            submitBtn.innerHTML = '<span>Sending...</span><i class="fas fa-spinner fa-spin"></i>';
+            submitBtn.disabled = true;
+            
+            try {
+                const formData = new FormData(contactForm);
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
                 
-                alert('Thank you for your message! I will get back to you soon.');
-                contactForm.reset();
+                if (response.ok) {
+                    contactForm.reset();
+                    submitBtn.innerHTML = '<span>Message Sent!</span><i class="fas fa-check"></i>';
+                    setTimeout(() => {
+                        submitBtn.innerHTML = originalBtnText;
+                        submitBtn.disabled = false;
+                    }, 3000);
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                submitBtn.innerHTML = '<span>Error! Try Again</span><i class="fas fa-times"></i>';
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalBtnText;
+                    submitBtn.disabled = false;
+                }, 3000);
             }
         });
     }
